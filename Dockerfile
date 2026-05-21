@@ -60,7 +60,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         pdo_mysql mbstring exif pcntl bcmath gd intl zip \
  && docker-php-ext-enable gd intl \
  && rm -rf /var/lib/apt/lists/*
-
+# ---------- Final Stage (testing) ----------
 WORKDIR /app
 
 COPY --from=builder /app /app
