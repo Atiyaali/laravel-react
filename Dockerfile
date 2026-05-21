@@ -45,7 +45,7 @@ COPY . .
 # ======================
 RUN npm run dev || npm run production
 
-# ---------- Final Stage (testing222222222) ----------
+
 # ---------- Final Stage (testing) ----------
 FROM php:7.4-fpm
 
