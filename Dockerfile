@@ -45,12 +45,11 @@ COPY . .
 # ======================
 RUN npm run dev || npm run production
 
-# ---------- Final Stage (final)) ----------
+# ---------- Final Stage (testing222222222) ----------
 # ---------- Final Stage (testing) ----------
 FROM php:7.4-fpm
 
 ENV DEBIAN_FRONTEND=noninteractive
-
 RUN apt-get update && apt-get install -y --no-install-recommends \
     netcat-traditional \
     libzip-dev libpng-dev libonig-dev libicu-dev libxml2-dev \
