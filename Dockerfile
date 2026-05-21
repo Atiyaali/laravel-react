@@ -44,8 +44,6 @@ COPY . .
 # 3. BUILD FRONTEND
 # ======================
 RUN npm run dev || npm run production
-
-
 # ---------- Final Stage (testing) ----------
 FROM php:7.4-fpm
 
