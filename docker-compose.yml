@@ -1,0 +1,57 @@
+version: "3.8"
+
+services:
+  lr_app:
+    container_name: lr_app
+    restart: always
+    tty: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      XDEBUG_CONFIG: "idekey=IDE_DEBUG"
+      PHP_IDE_CONFIG: "serverName=laravel_react_app"
+    volumes:
+      - .:/app  
+    depends_on:
+      - lr_database
+    networks:
+      - lr_network
+
+  lr_database:
+    image: mariadb:latest
+    container_name: lr_database
+    restart: always
+    environment:
+      MYSQL_DATABASE: laravel_react
+      MYSQL_USER: moeen
+      MYSQL_ROOT_PASSWORD: basra
+      MYSQL_PASSWORD: basra
+    ports:
+      - 3333:3306
+    volumes:
+      - lr_db_data:/var/lib/mysql
+      - ./.docker/db/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+    command: --default-authentication-plugin=mysql_native_password
+    networks:
+      - lr_network
+
+  lr_server:
+    image: nginx:alpine
+    container_name: lr_server
+    restart: always
+    ports:
+      - 8100:80
+    volumes:
+      - .:/app   
+      - ./.docker/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - lr_app
+    networks:
+      - lr_network
+
+networks:
+  lr_network:
+    driver: bridge
+volumes:
+  lr_db_data:
