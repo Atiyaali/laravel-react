@@ -44,8 +44,9 @@ COPY . .
 # 3. BUILD FRONTEND
 # ======================
 RUN npm run dev || npm run production
-# ---------- Final Stage (GOOD WORK testing) ----------
-    # ---------- Final Stage (BAD WORK testing) ----------
+
+
+# ---------- Final Stage (testing) ----------
 FROM php:7.4-fpm
 
 ENV DEBIAN_FRONTEND=noninteractive
