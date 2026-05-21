@@ -46,7 +46,7 @@ COPY . .
 RUN npm run dev || npm run production
 
 
-# ---------- Final Stage (testing1111) ----------
+# ---------- Final Stage (testing) ----------
 FROM php:7.4-fpm
 
 ENV DEBIAN_FRONTEND=noninteractive
